@@ -1,0 +1,368 @@
+[
+  {
+    "name": "run-tests",
+    "url": "/pipelines/bits-service/jobs/run-tests",
+    "next_build": null,
+    "finished_build": {
+      "id": 484,
+      "name": "20",
+      "status": "succeeded",
+      "job_name": "run-tests",
+      "url": "/pipelines/bits-service/jobs/run-tests/builds/20",
+      "api_url": "/api/v1/builds/484",
+      "pipeline_name": "bits-service",
+      "start_time": 1455298959,
+      "end_time": 1455299050
+    },
+    "inputs": [
+      {
+        "name": "git-bits-service",
+        "resource": "git-bits-service",
+        "trigger": true
+      }
+    ],
+    "outputs": [],
+    "groups": [
+      "bits-service"
+    ]
+  },
+  {
+    "name": "build-and-deploy",
+    "url": "/pipelines/bits-service/jobs/build-and-deploy",
+    "next_build": null,
+    "finished_build": {
+      "id": 470,
+      "name": "14",
+      "status": "succeeded",
+      "job_name": "build-and-deploy",
+      "url": "/pipelines/bits-service/jobs/build-and-deploy/builds/14",
+      "api_url": "/api/v1/builds/470",
+      "pipeline_name": "bits-service",
+      "start_time": 1455289275,
+      "end_time": 1455289379
+    },
+    "inputs": [
+      {
+        "name": "bits-service-release-version",
+        "resource": "bits-service-release-version",
+        "trigger": false
+      },
+      {
+        "name": "git-bits-service-release",
+        "resource": "git-bits-service-release",
+        "trigger": true
+      },
+      {
+        "name": "stemcell",
+        "resource": "stemcell",
+        "trigger": false
+      }
+    ],
+    "outputs": [
+      {
+        "name": "bits-service-release-version",
+        "resource": "bits-service-release-version"
+      },
+      {
+        "name": "bits-service-deployment",
+        "resource": "bits-service-deployment"
+      }
+    ],
+    "groups": [
+      "bits-service-release"
+    ]
+  },
+  {
+    "name": "run-system-tests",
+    "url": "/pipelines/bits-service/jobs/run-system-tests",
+    "next_build": null,
+    "finished_build": {
+      "id": 471,
+      "name": "7",
+      "status": "succeeded",
+      "job_name": "run-system-tests",
+      "url": "/pipelines/bits-service/jobs/run-system-tests/builds/7",
+      "api_url": "/api/v1/builds/471",
+      "pipeline_name": "bits-service",
+      "start_time": 1455289385,
+      "end_time": 1455289407
+    },
+    "inputs": [
+      {
+        "name": "bits-service-release-version",
+        "resource": "bits-service-release-version",
+        "passed": [
+          "build-and-deploy"
+        ],
+        "trigger": true
+      },
+      {
+        "name": "git-bits-service-release",
+        "resource": "git-bits-service-release",
+        "passed": [
+          "build-and-deploy"
+        ],
+        "trigger": false
+      }
+    ],
+    "outputs": [],
+    "groups": [
+      "bits-service-release"
+    ]
+  },
+  {
+    "name": "cc-tests",
+    "url": "/pipelines/bits-service/jobs/cc-tests",
+    "next_build": null,
+    "finished_build": {
+      "id": 451,
+      "name": "9",
+      "status": "succeeded",
+      "job_name": "cc-tests",
+      "url": "/pipelines/bits-service/jobs/cc-tests/builds/9",
+      "api_url": "/api/v1/builds/451",
+      "pipeline_name": "bits-service",
+      "start_time": 1455286129,
+      "end_time": 1455287180
+    },
+    "inputs": [
+      {
+        "name": "git-flintstone",
+        "resource": "git-flintstone",
+        "trigger": false
+      },
+      {
+        "name": "git-cloud-controller",
+        "resource": "git-cloud-controller",
+        "trigger": true
+      }
+    ],
+    "outputs": [],
+    "groups": [
+      "clound-controller"
+    ]
+  },
+  {
+    "name": "create-and-deploy-CF",
+    "url": "/pipelines/bits-service/jobs/create-and-deploy-CF",
+    "next_build": null,
+    "finished_build": {
+      "id": 476,
+      "name": "18",
+      "status": "succeeded",
+      "job_name": "create-and-deploy-CF",
+      "url": "/pipelines/bits-service/jobs/create-and-deploy-CF/builds/18",
+      "api_url": "/api/v1/builds/476",
+      "pipeline_name": "bits-service",
+      "start_time": 1455292773,
+      "end_time": 1455293866
+    },
+    "inputs": [
+      {
+        "name": "bits-service-release-version",
+        "resource": "bits-service-release-version",
+        "passed": [
+          "run-system-tests"
+        ],
+        "trigger": true
+      },
+      {
+        "name": "cf-release-version",
+        "resource": "cf-release-version",
+        "trigger": false
+      },
+      {
+        "name": "stemcell",
+        "resource": "stemcell",
+        "trigger": false
+      },
+      {
+        "name": "git-cf-release",
+        "resource": "git-cf-release",
+        "trigger": true
+      },
+      {
+        "name": "git-bits-service-release",
+        "resource": "git-bits-service-release",
+        "trigger": false
+      }
+    ],
+    "outputs": [
+      {
+        "name": "cf-deployment-lock",
+        "resource": "cf-deployment-lock"
+      },
+      {
+        "name": "cf-release-version",
+        "resource": "cf-release-version"
+      },
+      {
+        "name": "cf-deployment-lock",
+        "resource": "cf-deployment-lock"
+      },
+      {
+        "name": "cf-deployment-lock",
+        "resource": "cf-deployment-lock"
+      },
+      {
+        "name": "cf-deployment",
+        "resource": "cf-deployment"
+      }
+    ],
+    "groups": [
+      "cf-release"
+    ]
+  },
+  {
+    "name": "CATs",
+    "url": "/pipelines/bits-service/jobs/CATs",
+    "next_build": null,
+    "finished_build": {
+      "id": 477,
+      "name": "12",
+      "status": "succeeded",
+      "job_name": "CATs",
+      "url": "/pipelines/bits-service/jobs/CATs/builds/12",
+      "api_url": "/api/v1/builds/477",
+      "pipeline_name": "bits-service",
+      "start_time": 1455293869,
+      "end_time": 1455294828
+    },
+    "inputs": [
+      {
+        "name": "cf-deployment-lock",
+        "resource": "cf-deployment-lock",
+        "passed": [
+          "create-and-deploy-CF"
+        ],
+        "trigger": true
+      },
+      {
+        "name": "git-bits-service-release",
+        "resource": "git-bits-service-release",
+        "passed": [
+          "create-and-deploy-CF"
+        ],
+        "trigger": false
+      }
+    ],
+    "outputs": [],
+    "groups": [
+      "cf-release"
+    ]
+  },
+  {
+    "name": "turn-BITS-flag-ON",
+    "url": "/pipelines/bits-service/jobs/turn-BITS-flag-ON",
+    "next_build": null,
+    "finished_build": {
+      "id": 479,
+      "name": "11",
+      "status": "succeeded",
+      "job_name": "turn-BITS-flag-ON",
+      "url": "/pipelines/bits-service/jobs/turn-BITS-flag-ON/builds/11",
+      "api_url": "/api/v1/builds/479",
+      "pipeline_name": "bits-service",
+      "start_time": 1455294834,
+      "end_time": 1455295013
+    },
+    "inputs": [
+      {
+        "name": "cf-deployment-lock",
+        "resource": "cf-deployment-lock",
+        "passed": [
+          "CATs"
+        ],
+        "trigger": true
+      },
+      {
+        "name": "git-bits-service-release",
+        "resource": "git-bits-service-release",
+        "passed": [
+          "CATs"
+        ],
+        "trigger": true
+      },
+      {
+        "name": "stemcell",
+        "resource": "stemcell",
+        "passed": [
+          "create-and-deploy-CF"
+        ],
+        "trigger": false
+      }
+    ],
+    "outputs": [],
+    "groups": [
+      "cf-release"
+    ]
+  },
+  {
+    "name": "CATs-with-bits",
+    "url": "/pipelines/bits-service/jobs/CATs-with-bits",
+    "next_build": null,
+    "finished_build": {
+      "id": 480,
+      "name": "12",
+      "status": "succeeded",
+      "job_name": "CATs-with-bits",
+      "url": "/pipelines/bits-service/jobs/CATs-with-bits/builds/12",
+      "api_url": "/api/v1/builds/480",
+      "pipeline_name": "bits-service",
+      "start_time": 1455295015,
+      "end_time": 1455296089
+    },
+    "inputs": [
+      {
+        "name": "cf-deployment-lock",
+        "resource": "cf-deployment-lock",
+        "passed": [
+          "turn-BITS-flag-ON"
+        ],
+        "trigger": true
+      },
+      {
+        "name": "git-bits-service-release",
+        "resource": "git-bits-service-release",
+        "passed": [
+          "turn-BITS-flag-ON"
+        ],
+        "trigger": true
+      }
+    ],
+    "outputs": [
+      {
+        "name": "cf-deployment-lock",
+        "resource": "cf-deployment-lock"
+      }
+    ],
+    "groups": [
+      "cf-release"
+    ]
+  },
+  {
+    "name": "release-cf-release-lock",
+    "url": "/pipelines/bits-service/jobs/release-cf-release-lock",
+    "next_build": null,
+    "finished_build": null,
+    "inputs": [
+      {
+        "name": "cf-deployment-lock",
+        "resource": "cf-deployment-lock",
+        "passed": [
+          "create-and-deploy-CF"
+        ],
+        "trigger": false
+      }
+    ],
+    "outputs": [
+      {
+        "name": "cf-deployment-lock",
+        "resource": "cf-deployment-lock"
+      }
+    ],
+    "groups": [
+      "cf-release"
+    ]
+  }
+]

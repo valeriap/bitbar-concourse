@@ -1,0 +1,11 @@
+{
+  "id": 480,
+  "name": "12",
+  "status": "succeeded",
+  "job_name": "CATs-with-bits",
+  "url": "/pipelines/bits-service/jobs/CATs-with-bits/builds/12",
+  "api_url": "/api/v1/builds/480",
+  "pipeline_name": "bits-service",
+  "start_time": 1455295015,
+  "end_time": 1455296089
+}

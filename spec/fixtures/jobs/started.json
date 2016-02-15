@@ -1,0 +1,10 @@
+{
+  "id": 481,
+  "name": "18",
+  "status": "started",
+  "job_name": "run-tests",
+  "url": "/pipelines/bits-service/jobs/run-tests/builds/18",
+  "api_url": "/api/v1/builds/481",
+  "pipeline_name": "bits-service",
+  "start_time": 1455298140
+}

@@ -1,0 +1,43 @@
+{
+  "name": "CATs-with-bits",
+  "url": "/pipelines/bits-service/jobs/CATs-with-bits",
+  "next_build": null,
+  "finished_build": {
+    "id": 480,
+    "name": "12",
+    "status": "succeeded",
+    "job_name": "CATs-with-bits",
+    "url": "/pipelines/bits-service/jobs/CATs-with-bits/builds/12",
+    "api_url": "/api/v1/builds/480",
+    "pipeline_name": "bits-service",
+    "start_time": 1455295015,
+    "end_time": 1455296089
+  },
+  "inputs": [
+    {
+      "name": "cf-deployment-lock",
+      "resource": "cf-deployment-lock",
+      "passed": [
+        "turn-BITS-flag-ON"
+      ],
+      "trigger": true
+    },
+    {
+      "name": "git-bits-service-release",
+      "resource": "git-bits-service-release",
+      "passed": [
+        "turn-BITS-flag-ON"
+      ],
+      "trigger": true
+    }
+  ],
+  "outputs": [
+    {
+      "name": "cf-deployment-lock",
+      "resource": "cf-deployment-lock"
+    }
+  ],
+  "groups": [
+    "cf-release"
+  ]
+}

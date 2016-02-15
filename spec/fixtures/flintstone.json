@@ -1,0 +1,53 @@
+[
+  {
+    "name": "bits-service",
+    "url": "/pipelines/bits-service",
+    "paused": false,
+    "groups": [
+      {
+        "name": "bits-service",
+        "jobs": [
+          "run-tests"
+        ]
+      },
+      {
+        "name": "bits-service-release",
+        "jobs": [
+          "build-and-deploy",
+          "run-system-tests"
+        ]
+      },
+      {
+        "name": "clound-controller",
+        "jobs": [
+          "cc-tests"
+        ]
+      },
+      {
+        "name": "cf-release",
+        "jobs": [
+          "create-and-deploy-CF",
+          "CATs",
+          "turn-BITS-flag-ON",
+          "CATs-with-bits",
+          "release-cf-release-lock"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "docker-image",
+    "url": "/pipelines/docker-image",
+    "paused": false
+  },
+  {
+    "name": "runtime_og",
+    "url": "/pipelines/runtime_og",
+    "paused": false
+  },
+  {
+    "name": "old",
+    "url": "/pipelines/old",
+    "paused": false
+  }
+]

@@ -1,0 +1,29 @@
+#!/usr/bin/env ruby
+$LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
+
+require 'concourse'
+require 'bitbar'
+
+client = Concourse::Client.new(
+  ENV.fetch('CONCOURSE_URI'),
+  ENV['CONCOURSE_USER'],
+  ENV['CONCOURSE_PASSWORD'],
+)
+
+ci = Concourse::Target.new(client)
+
+pipelines = ci.pipelines
+
+if ARGV.any?
+  pipelines = pipelines.select{|pipeline| ARGV.include?(pipeline.name)}
+end
+
+puts Bitbar::Concourse::TargetPresenter.new(ci)
+puts '---'
+
+pipelines.each do |pipeline|
+  pipeline.jobs.each do |job|
+    latest_build = job.latest_build
+    puts Bitbar::Concourse::BuildPresenter.new(latest_build) if latest_build
+  end
+end

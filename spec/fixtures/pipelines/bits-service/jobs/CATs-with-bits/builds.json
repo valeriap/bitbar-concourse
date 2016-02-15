@@ -1,0 +1,134 @@
+[
+  {
+    "id": 480,
+    "name": "12",
+    "status": "succeeded",
+    "job_name": "CATs-with-bits",
+    "url": "/pipelines/bits-service/jobs/CATs-with-bits/builds/12",
+    "api_url": "/api/v1/builds/480",
+    "pipeline_name": "bits-service",
+    "start_time": 1455295015,
+    "end_time": 1455296089
+  },
+  {
+    "id": 475,
+    "name": "11",
+    "status": "succeeded",
+    "job_name": "CATs-with-bits",
+    "url": "/pipelines/bits-service/jobs/CATs-with-bits/builds/11",
+    "api_url": "/api/v1/builds/475",
+    "pipeline_name": "bits-service",
+    "start_time": 1455291305,
+    "end_time": 1455292299
+  },
+  {
+    "id": 466,
+    "name": "10",
+    "status": "succeeded",
+    "job_name": "CATs-with-bits",
+    "url": "/pipelines/bits-service/jobs/CATs-with-bits/builds/10",
+    "api_url": "/api/v1/builds/466",
+    "pipeline_name": "bits-service",
+    "start_time": 1455288201,
+    "end_time": 1455289263
+  },
+  {
+    "id": 459,
+    "name": "9",
+    "status": "failed",
+    "job_name": "CATs-with-bits",
+    "url": "/pipelines/bits-service/jobs/CATs-with-bits/builds/9",
+    "api_url": "/api/v1/builds/459",
+    "pipeline_name": "bits-service",
+    "start_time": 1455287206,
+    "end_time": 1455288147
+  },
+  {
+    "id": 452,
+    "name": "8",
+    "status": "failed",
+    "job_name": "CATs-with-bits",
+    "url": "/pipelines/bits-service/jobs/CATs-with-bits/builds/8",
+    "api_url": "/api/v1/builds/452",
+    "pipeline_name": "bits-service",
+    "start_time": 1455286135,
+    "end_time": 1455287024
+  },
+  {
+    "id": 444,
+    "name": "7",
+    "status": "failed",
+    "job_name": "CATs-with-bits",
+    "url": "/pipelines/bits-service/jobs/CATs-with-bits/builds/7",
+    "api_url": "/api/v1/builds/444",
+    "pipeline_name": "bits-service",
+    "start_time": 1455277676,
+    "end_time": 1455278520
+  },
+  {
+    "id": 432,
+    "name": "6",
+    "status": "succeeded",
+    "job_name": "CATs-with-bits",
+    "url": "/pipelines/bits-service/jobs/CATs-with-bits/builds/6",
+    "api_url": "/api/v1/builds/432",
+    "pipeline_name": "bits-service",
+    "start_time": 1455273112,
+    "end_time": 1455274031
+  },
+  {
+    "id": 414,
+    "name": "5",
+    "status": "succeeded",
+    "job_name": "CATs-with-bits",
+    "url": "/pipelines/bits-service/jobs/CATs-with-bits/builds/5",
+    "api_url": "/api/v1/builds/414",
+    "pipeline_name": "bits-service",
+    "start_time": 1455211574,
+    "end_time": 1455212681
+  },
+  {
+    "id": 405,
+    "name": "4",
+    "status": "succeeded",
+    "job_name": "CATs-with-bits",
+    "url": "/pipelines/bits-service/jobs/CATs-with-bits/builds/4",
+    "api_url": "/api/v1/builds/405",
+    "pipeline_name": "bits-service",
+    "start_time": 1455207594,
+    "end_time": 1455208547
+  },
+  {
+    "id": 395,
+    "name": "3",
+    "status": "aborted",
+    "job_name": "CATs-with-bits",
+    "url": "/pipelines/bits-service/jobs/CATs-with-bits/builds/3",
+    "api_url": "/api/v1/builds/395",
+    "pipeline_name": "bits-service",
+    "start_time": 1455199795,
+    "end_time": 1455199814
+  },
+  {
+    "id": 378,
+    "name": "2",
+    "status": "failed",
+    "job_name": "CATs-with-bits",
+    "url": "/pipelines/bits-service/jobs/CATs-with-bits/builds/2",
+    "api_url": "/api/v1/builds/378",
+    "pipeline_name": "bits-service",
+    "start_time": 1455128809,
+    "end_time": 1455129692
+  },
+  {
+    "id": 294,
+    "name": "1",
+    "status": "succeeded",
+    "job_name": "CATs-with-bits",
+    "url": "/pipelines/bits-service/jobs/CATs-with-bits/builds/1",
+    "api_url": "/api/v1/builds/294",
+    "pipeline_name": "bits-service",
+    "start_time": 1454944094,
+    "end_time": 1454945145
+  }
+]
