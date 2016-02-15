@@ -46,7 +46,7 @@ This started out as fork of Checkman's [concourse.check](https://github.com/cppf
 The propeller logo is in the [public domain](https://thenounproject.com/search/?q=propeller&i=13111).
 
 # TODO
-* Finish target presenter to show a composite status for all jobs
+* Order latest builds in presenter, by status and then by last-run date
 * Incorporate TerminalNotifier:
 
         TerminalNotifier.notify('Hello World', :open => 'http://twitter.com/alloy')

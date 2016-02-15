@@ -3,8 +3,6 @@ module Concourse
   # A build belongs to a job
   #
   class Build
-    attr_reader :job
-
     def initialize(job, info)
       @job = job
       @info = info
@@ -35,15 +33,15 @@ module Concourse
     end
 
     def start_time
-      Time.at(@info['start_time'])
+      Time.at(@info['start_time']) if @info['start_time']
     end
 
     def end_time
-      Time.at(@info['end_time'])
+      Time.at(@info['end_time']) if @info['end_time']
     end
 
     def to_s
-      "#{self.class.name.split('::').last.downcase} #{name} of #{job}"
+      "#{self.class.name.split('::').last.downcase} #{name} of #{@job}"
     end
   end
 end

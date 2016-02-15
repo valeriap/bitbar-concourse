@@ -16,7 +16,7 @@ module Concourse
     end
 
     def to_s
-      "Pipeline #{name}"
+      "#{self.class.name.split('::').last.downcase} #{name} of #{@target}"
     end
 
     def url

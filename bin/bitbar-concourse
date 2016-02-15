@@ -11,19 +11,20 @@ client = Concourse::Client.new(
 )
 
 ci = Concourse::Target.new(client)
-
 pipelines = ci.pipelines
 
 if ARGV.any?
   pipelines = pipelines.select{|pipeline| ARGV.include?(pipeline.name)}
 end
 
-puts Bitbar::Concourse::TargetPresenter.new(ci)
-puts '---'
-
-pipelines.each do |pipeline|
-  pipeline.jobs.each do |job|
-    latest_build = job.latest_build
-    puts Bitbar::Concourse::BuildPresenter.new(latest_build) if latest_build
+latest_builds = pipelines.map do |pipeline|
+  pipeline.jobs.map do |job|
+    if latest_build = job.latest_build
+      Bitbar::Concourse::BuildPresenter.new(latest_build)
+    end
   end
-end
+end.flatten.compact
+
+puts Bitbar::Concourse::AggregatePresenter.new(latest_builds, ENV.fetch('CONCOURSE_TARGET', 'Concourse'))
+puts '---'
+puts latest_builds

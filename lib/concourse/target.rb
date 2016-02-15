@@ -8,8 +8,11 @@ module Concourse
   # A target has many pipelines
   #
   class Target
-    def initialize(client)
+    attr_reader :name
+    
+    def initialize(client, name = nil)
       @client = client
+      @name = name
     end
 
     def pipelines
@@ -24,6 +27,10 @@ module Concourse
 
     def url
       @client.base_uri
+    end
+
+    def to_s
+      "#{self.class.name.split('::').last.downcase} #{name}"
     end
   end
 end

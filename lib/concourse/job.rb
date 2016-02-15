@@ -17,7 +17,7 @@ module Concourse
     end
 
     def to_s
-      "Job #{name} (#{pipeline})"
+      "#{self.class.name.split('::').last.downcase} #{name} of #{pipeline}"
     end
 
     def builds

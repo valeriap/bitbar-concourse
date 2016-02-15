@@ -31,7 +31,7 @@ module Bitbar
         icon = @build.success? ? '✅' : '❌'
 
         [
-          "#{icon}  #{@build.job.name} - build ##{@build.name} | href=#{@build.url}",
+          "#{icon}  #{@build.job_name} - build ##{@build.name} | href=#{@build.url}",
           "finished #{end_time}; took #{elapsed_time}",
         ].join("\n")
       end
@@ -52,7 +52,13 @@ module Bitbar
       end
 
       def end_time
-        @build.end_time.extend(RelativeTime).to_relative
+        if @build.end_time
+          @build.end_time.extend(RelativeTime).to_relative
+        end
+      end
+
+      def success?
+        @build.success?
       end
     end
   end
