@@ -47,7 +47,7 @@ The propeller logo is in the [public domain](https://thenounproject.com/search/?
 
 # TODO
 * Order latest builds in presenter, by status and then by last-run date
-* Incorporate TerminalNotifier:
+* Use TerminalNotifier when a build is failing:
 
         TerminalNotifier.notify('Hello World', :open => 'http://twitter.com/alloy')
 

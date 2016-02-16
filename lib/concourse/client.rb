@@ -24,8 +24,9 @@ module Concourse
 
     def http_opts
       {
-        :http_basic_authentication => [@username, @password],
-        :ssl_verify_mode => OpenSSL::SSL::VERIFY_NONE
+        http_basic_authentication: [@username, @password],
+        ssl_verify_mode: OpenSSL::SSL::VERIFY_NONE,
+        open_timeout: 5,
       }
     end
   end

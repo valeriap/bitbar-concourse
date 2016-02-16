@@ -10,8 +10,15 @@ client = Concourse::Client.new(
   ENV['CONCOURSE_PASSWORD'],
 )
 
+target_name = ENV.fetch('CONCOURSE_TARGET', 'Concourse')
 ci = Concourse::Target.new(client)
-pipelines = ci.pipelines
+
+begin
+  pipelines = ci.pipelines
+rescue
+  warn Bitbar::Concourse::ErrorPresenter.new($!, target_name)
+  exit 1
+end
 
 if ARGV.any?
   pipelines = pipelines.select{|pipeline| ARGV.include?(pipeline.name)}
@@ -25,6 +32,6 @@ latest_builds = pipelines.map do |pipeline|
   end
 end.flatten.compact
 
-puts Bitbar::Concourse::AggregatePresenter.new(latest_builds, ENV.fetch('CONCOURSE_TARGET', 'Concourse'))
+puts Bitbar::Concourse::AggregatePresenter.new(latest_builds, target_name)
 puts '---'
 puts latest_builds
