@@ -27,6 +27,10 @@ This started out as fork of Checkman's [concourse.check](https://github.com/cppf
 
 * Check the bitbar icon in the system tray for updated status
 
+  Example:
+
+  ![Flintstone CI](public/flintstone.png)
+
 # Installation
 
     $ gem install bitbar-concourse
