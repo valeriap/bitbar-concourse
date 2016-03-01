@@ -8,12 +8,12 @@ Gem::Specification.new do |spec|
   spec.authors       = ['Steffen Uhlig']
   spec.email         = ['Steffen.Uhlig@de.ibm.com']
 
-  spec.summary       = %q{bitbar-plugin for concourse.ci}
+  spec.summary       = 'bitbar-plugin for concourse.ci'
 
   if spec.respond_to?(:metadata)
     spec.metadata['allowed_push_host'] = 'https://rubygems.ibm.com' # prevent push until this exists
   else
-    raise 'RubyGems 2.0 or newer is required to protect against public gem pushes.'
+    fail 'RubyGems 2.0 or newer is required to protect against public gem pushes.'
   end
 
   spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
@@ -26,6 +26,6 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'rspec'
   spec.add_development_dependency 'webmock'
   spec.add_development_dependency 'pry'
-  spec.add_development_dependency 'pry-nav'
-  spec.add_development_dependency 'pry-stack_explorer'
+  spec.add_development_dependency 'pry-byebug'
+  spec.add_development_dependency 'rubocop'
 end

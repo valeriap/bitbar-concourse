@@ -3,17 +3,17 @@ require 'json'
 
 module Concourse
   describe Build do
-    let(:job){
+    let(:job) do
       double(Job)
-    }
+    end
 
-    let(:fixtures){
+    let(:fixtures) do
       Pathname(__dir__).parent / 'fixtures'
-    }
+    end
 
-    let(:build_json){
+    let(:build_json) do
       JSON.parse File.read(fixtures / 'pipelines/bits-service/jobs/CATs-with-bits/builds/12.json')
-    }
+    end
 
     describe '#new' do
       it 'returns a valid build' do

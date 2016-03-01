@@ -3,17 +3,17 @@ require 'json'
 
 module Concourse
   describe Pipeline do
-    let(:client){
+    let(:client) do
       double(Client)
-    }
+    end
 
-    let(:fixtures){
+    let(:fixtures) do
       Pathname(__dir__).parent / 'fixtures'
-    }
+    end
 
-    let(:bits_service_json){
+    let(:bits_service_json) do
       JSON.parse File.read(fixtures / 'pipelines/bits-service.json')
-    }
+    end
 
     before do
       allow(client).to receive(:url).and_return('http://example.com')

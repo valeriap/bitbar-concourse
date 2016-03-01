@@ -7,7 +7,7 @@ require 'bitbar'
 client = Concourse::Client.new(
   ENV.fetch('CONCOURSE_URI'),
   ENV['CONCOURSE_USER'],
-  ENV['CONCOURSE_PASSWORD'],
+  ENV['CONCOURSE_PASSWORD']
 )
 
 target_name = ENV.fetch('CONCOURSE_TARGET', 'Concourse')
@@ -15,19 +15,19 @@ ci = Concourse::Target.new(client)
 
 begin
   pipelines = ci.pipelines
-rescue
-  warn Bitbar::Concourse::ErrorPresenter.new($!, target_name)
+rescue => e
+  warn Bitbar::Concourse::ErrorPresenter.new(e, target_name)
   exit 1
 end
 
 if ARGV.any?
-  pipelines = pipelines.select{|pipeline| ARGV.include?(pipeline.name)}
+  pipelines = pipelines.select { |pipeline| ARGV.include?(pipeline.name) }
 end
 
 latest_builds = pipelines.map do |pipeline|
   pipeline.jobs.map do |job|
-    if latest_build = job.latest_build
-      Bitbar::Concourse::BuildPresenter.new(latest_build)
+    if build = job.finished_build
+      Bitbar::Concourse::BuildPresenter.new(build)
     end
   end
 end.flatten.compact

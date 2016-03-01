@@ -2,7 +2,8 @@ module Concourse
   #
   # A job belongs to a pipeline
   # A job has many builds
-  # A job has one latest_build
+  # A job has one finished_build
+  # A job has one next_build
   #
   class Job
     attr_reader :pipeline
@@ -26,8 +27,13 @@ module Concourse
       end
     end
 
-    def latest_build
-      builds.first
+    def finished_build
+      Build.new(self, @info['finished_build'])
+    end
+
+    def next_build
+      next_build = @info['next_build']
+      Build.new(self, next_build) if next_build
     end
 
     def url

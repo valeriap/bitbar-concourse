@@ -1,0 +1,80 @@
+{
+  "name": "create-and-deploy-CF",
+  "url": "/pipelines/bits-service/jobs/create-and-deploy-CF",
+  "next_build": {
+    "id": 1149,
+    "name": "58",
+    "status": "started",
+    "job_name": "create-and-deploy-CF",
+    "url": "/pipelines/bits-service/jobs/create-and-deploy-CF/builds/58",
+    "api_url": "/api/v1/builds/1149",
+    "pipeline_name": "bits-service",
+    "start_time": 1456833762
+  },
+  "finished_build": {
+    "id": 1143,
+    "name": "57",
+    "status": "succeeded",
+    "job_name": "create-and-deploy-CF",
+    "url": "/pipelines/bits-service/jobs/create-and-deploy-CF/builds/57",
+    "api_url": "/api/v1/builds/1143",
+    "pipeline_name": "bits-service",
+    "start_time": 1456829900,
+    "end_time": 1456831078
+  },
+  "inputs": [
+    {
+      "name": "bits-service-release-version",
+      "resource": "bits-service-release-version",
+      "passed": [
+        "done"
+      ],
+      "trigger": true
+    },
+    {
+      "name": "cf-release-version",
+      "resource": "cf-release-version",
+      "trigger": false
+    },
+    {
+      "name": "stemcell",
+      "resource": "stemcell",
+      "trigger": false
+    },
+    {
+      "name": "git-cf-release",
+      "resource": "git-cf-release",
+      "trigger": true
+    },
+    {
+      "name": "git-bits-service-release",
+      "resource": "git-bits-service-release",
+      "trigger": false
+    }
+  ],
+  "outputs": [
+    {
+      "name": "cf-deployment-lock",
+      "resource": "cf-deployment-lock"
+    },
+    {
+      "name": "cf-release-version",
+      "resource": "cf-release-version"
+    },
+    {
+      "name": "cf-deployment-lock",
+      "resource": "cf-deployment-lock"
+    },
+    {
+      "name": "cf-deployment-lock",
+      "resource": "cf-deployment-lock"
+    },
+    {
+      "name": "cf-deployment",
+      "resource": "cf-deployment"
+    }
+  ],
+  "groups": [
+    "cf-release"
+  ]
+}
