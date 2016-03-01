@@ -38,6 +38,18 @@ module Concourse
         expect(build_9).to_not be_nil
         expect(build_9.name).to eq('3')
       end
+
+      context 'latest job is in started state' do
+        let(:job_json){
+          JSON.parse File.read(fixtures / 'jobs/started.json')
+        }
+
+        it 'has a latest finished build' do
+          job = Job.new(pipeline, job_json)
+          expect(job.finished_build).to be
+          expect(job.finished_build.finished?).to be(false)
+        end
+      end
     end
   end
 end

@@ -16,7 +16,7 @@ module Concourse
     def get(path)
       path = path[1..-1] if path.start_with?('/')
       url = @base_uri + path
-
+      
       open(url, http_opts).read
     end
 

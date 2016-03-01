@@ -3,6 +3,8 @@ module Concourse
   # A build belongs to a job
   #
   class Build
+    attr_reader :job
+    
     def initialize(job, info)
       @job = job
       @info = info
@@ -10,6 +12,10 @@ module Concourse
 
     def success?
       status == 'succeeded'
+    end
+
+    def finished?
+      status != 'started'
     end
 
     def changing?

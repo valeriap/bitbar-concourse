@@ -30,10 +30,19 @@ module Bitbar
       def to_s
         icon = @build.success? ? '✅' : '❌'
 
-        [
+        lines = [
           "#{icon}  #{@build.job_name} - build ##{@build.name} | href=#{@build.url}",
           "finished #{end_time}; took #{elapsed_time}",
-        ].join("\n")
+        ]
+
+        next_build = @build.job.next_build
+
+        if next_build
+          started_at = next_build.start_time.extend(RelativeTime).to_relative
+          lines << "next build (##{next_build.name}) started #{started_at} | href=#{next_build.url}"
+        end
+
+        lines.join("\n")
       end
 
       def elapsed_time

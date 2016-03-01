@@ -26,8 +26,8 @@ end
 
 latest_builds = pipelines.map do |pipeline|
   pipeline.jobs.map do |job|
-    if latest_build = job.latest_build
-      Bitbar::Concourse::BuildPresenter.new(latest_build)
+    if build = job.finished_build
+      Bitbar::Concourse::BuildPresenter.new(build)
     end
   end
 end.flatten.compact
