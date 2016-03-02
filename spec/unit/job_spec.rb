@@ -41,13 +41,13 @@ module Concourse
 
       context 'latest job is in started state' do
         let(:job_json) do
-          JSON.parse File.read(fixtures / 'jobs/started.json')
+          JSON.parse File.read(fixtures / 'pipelines/bits-service/jobs/CATs-with-bits.json')
         end
 
         it 'has a latest finished build' do
           job = Job.new(pipeline, job_json)
           expect(job.finished_build).to be
-          expect(job.finished_build.finished?).to be(false)
+          expect(job.finished_build.finished?).to be(true)
         end
       end
     end
