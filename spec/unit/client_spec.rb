@@ -28,25 +28,25 @@ module Concourse
 
     before(:all) do
       [
-        ["succeeded", "pending"],
-        ["succeeded", "started"],
-        ["failed", "pending"],
-        ["failed", "started"],
-        ["errored", "pending"],
-        ["errored", "started"],
-        ["aborted", "pending"],
-        ["aborted", "started"],
+        %w(succeeded pending),
+        %w(succeeded started),
+        %w(failed pending),
+        %w(failed started),
+        %w(errored pending),
+        %w(errored started),
+        %w(aborted pending),
+        %w(aborted started)
       ].each do |finished_status, next_status|
-        WebMock.stub_request(:get, "http://username77:passw0rd@server.example.com/api/v1/pipelines/some-pipeline/jobs/#{finished_status}-#{next_status}").
-          to_return(:status => 200, :body => job_json % [finished_status, next_status], :headers => {})
+        WebMock.stub_request(:get, "http://username77:passw0rd@server.example.com/api/v1/pipelines/some-pipeline/jobs/#{finished_status}-#{next_status}")
+               .to_return(status: 200, body: job_json % [finished_status, next_status], headers: {})
       end
     end
 
-    subject {
+    subject do
       Client.new('http://server.example.com/', 'username77', 'passw0rd')
-    }
+    end
 
-    context "when the pipeline and job exist" do
+    context 'when the pipeline and job exist' do
       it 'contains a finished job that has succeeded' do
         expect_finished_job_status('succeeded', 'pending')
       end

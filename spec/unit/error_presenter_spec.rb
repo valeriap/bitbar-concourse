@@ -3,13 +3,13 @@ require 'spec_helper'
 module Bitbar
   module Concourse
     describe ErrorPresenter do
-      subject {
+      subject do
         ErrorPresenter.new(error, name)
-      }
+      end
 
       context 'when there is an error' do
-        let(:error){double(StandardError)}
-        let(:name){double('testing')}
+        let(:error) { double(StandardError) }
+        let(:name) { double('testing') }
 
         describe '#to_s' do
           it 'returns the error message' do

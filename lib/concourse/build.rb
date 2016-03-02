@@ -4,7 +4,7 @@ module Concourse
   #
   class Build
     attr_reader :job
-    
+
     def initialize(job, info)
       @job = job
       @info = info

@@ -15,9 +15,7 @@ module Bitbar
       end
 
       def success?
-        @builds.delete_if do |build|
-          build.success?
-        end.empty?
+        @builds.delete_if(&:success?).empty?
       end
     end
   end

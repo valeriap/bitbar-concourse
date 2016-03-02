@@ -9,7 +9,7 @@ module Concourse
   #
   class Target
     attr_reader :name
-    
+
     def initialize(client, name = nil)
       @client = client
       @name = name

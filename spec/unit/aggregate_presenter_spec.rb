@@ -3,13 +3,13 @@ require 'spec_helper'
 module Bitbar
   module Concourse
     describe AggregatePresenter do
-      let(:build_green){
+      let(:build_green) do
         double(::Concourse::Build)
-      }
+      end
 
-      let(:build_red){
+      let(:build_red) do
         double(::Concourse::Build)
-      }
+      end
 
       before do
         allow(build_green).to receive(:success?).and_return(true)
@@ -17,9 +17,9 @@ module Bitbar
       end
 
       context 'when all jobs of all pipelines are green' do
-        subject {
+        subject do
           AggregatePresenter.new([build_green, build_green])
-        }
+        end
 
         describe '#to_s' do
           it 'returns presents the target as green' do
@@ -35,9 +35,9 @@ module Bitbar
       end
 
       context 'when one job of a pipelines is red' do
-        subject {
+        subject do
           AggregatePresenter.new([build_green, build_red])
-        }
+        end
 
         describe '#to_s' do
           it 'returns presents the target as green' do
@@ -53,9 +53,9 @@ module Bitbar
       end
 
       context 'when all jobs of all pipelines are red' do
-        subject {
+        subject do
           AggregatePresenter.new([build_red, build_red])
-        }
+        end
 
         describe '#to_s' do
           it 'returns presents the target as green' do

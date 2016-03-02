@@ -2,17 +2,16 @@ require 'spec_helper'
 
 module Concourse
   describe Target do
-
-    let(:api){'http://10.155.248.166:8080'}
-    let(:user){'admin'}
-    let(:password){'admin'}
-    let(:client){
+    let(:api) { 'http://10.155.248.166:8080' }
+    let(:user) { 'admin' }
+    let(:password) { 'admin' }
+    let(:client) do
       double(Client)
-    }
+    end
 
-    subject {
+    subject do
       Target.new(client)
-    }
+    end
 
     context 'when target is available' do
       before do
