@@ -15,8 +15,8 @@ ci = Concourse::Target.new(client)
 
 begin
   pipelines = ci.pipelines
-rescue
-  warn Bitbar::Concourse::ErrorPresenter.new($ERROR_INFO, target_name)
+rescue => e
+  warn Bitbar::Concourse::ErrorPresenter.new(e, target_name)
   exit 1
 end
 

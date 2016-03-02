@@ -23,7 +23,7 @@ module Bitbar
   module Concourse
     class BuildPresenter
       def initialize(build)
-        raise 'Build must not be nil' if build.nil?
+        fail 'Build must not be nil' if build.nil?
         @build = build
       end
 
