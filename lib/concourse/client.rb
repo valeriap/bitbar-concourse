@@ -1,10 +1,11 @@
+# frozen_string_literal: true
 require 'uri'
 require 'open-uri'
 require 'net/https'
 
 module Concourse
   class Client
-    API_BASE_PATH = '/api/v1/'.freeze
+    API_BASE_PATH = '/api/v1/'
 
     attr_reader :base_uri
 

@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module Bitbar
   # derived from http://stackoverflow.com/a/195894
   module RelativeTime
@@ -23,7 +24,7 @@ module Bitbar
   module Concourse
     class BuildPresenter
       def initialize(build)
-        fail 'Build must not be nil' if build.nil?
+        raise 'Build must not be nil' if build.nil?
         @build = build
       end
 

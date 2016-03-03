@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require 'spec_helper'
 require 'webmock'
 
@@ -37,8 +38,8 @@ module Concourse
         %w(aborted pending),
         %w(aborted started)
       ].each do |finished_status, next_status|
-        WebMock.stub_request(:get, "http://username77:passw0rd@server.example.com/api/v1/pipelines/some-pipeline/jobs/#{finished_status}-#{next_status}")
-          .to_return(status: 200, body: job_json % [finished_status, next_status], headers: {})
+        WebMock.stub_request(:get, "http://username77:passw0rd@server.example.com/api/v1/pipelines/some-pipeline/jobs/#{finished_status}-#{next_status}").
+          to_return(status: 200, body: job_json % [finished_status, next_status], headers: {})
       end
     end
 

@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require 'spec_helper'
 require 'json'
 
@@ -15,7 +16,7 @@ module Concourse
       JSON.parse File.read(fixtures / 'pipelines/bits-service/jobs/CATs-with-bits/builds/12.json')
     end
 
-    subject {Build.new(job, build_json)}
+    subject { Build.new(job, build_json) }
 
     describe '#new' do
       it 'returns a valid build' do

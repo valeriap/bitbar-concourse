@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module Concourse
   #
   # A build belongs to a job
@@ -47,7 +48,7 @@ module Concourse
     end
 
     include ToStringDecorator
-    
+
     def parent
       @job
     end
