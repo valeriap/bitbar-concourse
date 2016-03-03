@@ -46,8 +46,10 @@ module Concourse
       Time.at(@info['end_time']) if @info['end_time']
     end
 
-    def to_s
-      "#{self.class.name.split('::').last.downcase} #{name} of #{@job}"
+    include ToStringDecorator
+    
+    def parent
+      @job
     end
   end
 end

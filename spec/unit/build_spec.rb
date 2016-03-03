@@ -15,18 +15,34 @@ module Concourse
       JSON.parse File.read(fixtures / 'pipelines/bits-service/jobs/CATs-with-bits/builds/12.json')
     end
 
+    subject {Build.new(job, build_json)}
+
     describe '#new' do
       it 'returns a valid build' do
         allow(job).to receive(:url).and_return('')
 
-        build = Build.new(job, build_json)
-        expect(build).to_not be_nil
-        expect(build.name).to eq('12')
+        expect(subject).to_not be_nil
+        expect(subject.name).to eq('12')
 
-        expect(build.status).to eq('succeeded')
-        expect(build.url).to eq('/pipelines/bits-service/jobs/CATs-with-bits/builds/12')
-        expect(build.start_time.to_s).to eq('2016-02-12 17:36:55 +0100')
-        expect(build.end_time.to_s).to eq('2016-02-12 17:54:49 +0100')
+        expect(subject.status).to eq('succeeded')
+        expect(subject.url).to eq('/pipelines/bits-service/jobs/CATs-with-bits/builds/12')
+        expect(subject.start_time.to_s).to eq('2016-02-12 17:36:55 +0100')
+        expect(subject.end_time.to_s).to eq('2016-02-12 17:54:49 +0100')
+      end
+    end
+
+    describe '#to_s' do
+      it 'no arg returns the short form' do
+        expect(subject.to_s).to eq('build 12')
+      end
+
+      it ':short returns the short form' do
+        expect(subject.to_s(:short)).to eq('build 12')
+      end
+
+      it ':long returns the long form' do
+        allow(job).to receive(:to_s).with(:long).and_return('job foobar')
+        expect(subject.to_s(:long)).to eq('build 12 of job foobar')
       end
     end
   end

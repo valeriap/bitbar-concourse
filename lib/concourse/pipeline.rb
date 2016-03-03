@@ -15,10 +15,6 @@ module Concourse
       @info['name']
     end
 
-    def to_s
-      "#{self.class.name.split('::').last.downcase} #{name} of #{@target}"
-    end
-
     def url
       @target.url + @info['url']
     end
@@ -31,6 +27,12 @@ module Concourse
 
     def get(path = '')
       @target.get("/#{name}/jobs#{path}")
+    end
+
+    include ToStringDecorator
+
+    def parent
+      @target
     end
   end
 end

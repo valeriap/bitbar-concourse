@@ -29,8 +29,10 @@ module Concourse
       @client.base_uri
     end
 
-    def to_s
-      "#{self.class.name.split('::').last.downcase} #{name}"
+    include ToStringDecorator
+
+    def parent
+      nil # do not include client in to_s
     end
   end
 end

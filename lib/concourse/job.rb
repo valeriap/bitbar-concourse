@@ -17,10 +17,6 @@ module Concourse
       @info['name']
     end
 
-    def to_s
-      "#{self.class.name.split('::').last.downcase} #{name} of #{pipeline}"
-    end
-
     def builds
       JSON.parse(@pipeline.get("/#{name}/builds")).map do |build|
         Build.new(self, build)
@@ -38,6 +34,12 @@ module Concourse
 
     def url
       @pipeline.url + @info['url']
+    end
+
+    include ToStringDecorator
+
+    def parent
+      @pipeline
     end
   end
 end
