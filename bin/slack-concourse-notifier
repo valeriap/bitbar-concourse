@@ -1,0 +1,41 @@
+#!/usr/bin/env ruby
+$LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
+
+require 'concourse'
+require 'concourse/slack'
+
+client = Concourse::Client.new(
+  ENV.fetch('CONCOURSE_URI'),
+  ENV['CONCOURSE_USER'],
+  ENV['CONCOURSE_PASSWORD']
+)
+
+target_name = ENV.fetch('CONCOURSE_TARGET', 'Concourse')
+ci = Concourse::Target.new(client, target_name)
+
+begin
+  pipelines = ci.pipelines
+rescue => e
+  warn "Error fetching pipelines: #{e.message}"
+  exit 1
+end
+
+if ARGV.any?
+  pipelines = pipelines.select { |pipeline| ARGV.include?(pipeline.name) }
+end
+
+finished_builds = pipelines.map do |pipeline|
+  pipeline.jobs.map do |job|
+    if build = job.finished_build
+      build
+    end
+  end
+end.flatten.compact
+
+build_notifier = Concourse::Slack::BuildNotifier.new(
+  ENV['SLACK_WEBHOOK_URI'],
+  username: ENV['SLACK_USERNAME'],
+  channel:  ENV['SLACK_CHANNEL']
+)
+
+build_notifier.deliver(finished_builds)
