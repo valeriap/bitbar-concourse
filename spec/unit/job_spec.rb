@@ -15,6 +15,8 @@ module Concourse
       JSON.parse File.read(fixtures / 'pipelines/bits-service/jobs/CATs-with-bits.json')
     end
 
+    subject{Job.new(pipeline, job_json)}
+
     before do
       allow(pipeline).to receive(:url).and_return('http://example.com')
       allow(pipeline).to receive(:get).with('/CATs-with-bits').and_return(File.read(fixtures / 'pipelines/bits-service/jobs/CATs-with-bits.json'))
@@ -23,14 +25,13 @@ module Concourse
 
     describe '#new' do
       it 'returns a valid job' do
-        job = Job.new(pipeline, job_json)
-        expect(job).to_not be_nil
-        expect(job.name).to eq('CATs-with-bits')
+        expect(subject).to_not be_nil
+        expect(subject.name).to eq('CATs-with-bits')
 
         # TBD
-        # expect(job.group).to eq('bits-service')
+        # expect(subject.group).to eq('bits-service')
 
-        builds = job.builds
+        builds = subject.builds
         expect(builds).to_not be_empty
         expect(builds.size).to eq(12)
 
@@ -45,9 +46,23 @@ module Concourse
         end
 
         it 'has a latest finished build' do
-          job = Job.new(pipeline, job_json)
-          expect(job.finished_build).to be
-          expect(job.finished_build.finished?).to be(true)
+          expect(subject.finished_build).to be
+          expect(subject.finished_build.finished?).to be(true)
+        end
+      end
+
+      describe '#to_s' do
+        it 'no arg returns the short form' do
+          expect(subject.to_s).to eq('job CATs-with-bits')
+        end
+
+        it ':short returns the short form' do
+          expect(subject.to_s(:short)).to eq('job CATs-with-bits')
+        end
+
+        it ':long returns the long form' do
+          allow(pipeline).to receive(:to_s).with(:long).and_return('pipeline foobar')
+          expect(subject.to_s(:long)).to eq('job CATs-with-bits of pipeline foobar')
         end
       end
     end

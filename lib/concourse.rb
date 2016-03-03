@@ -1,3 +1,4 @@
+require 'concourse/decorator'
 require 'concourse/client'
 require 'concourse/target'
 require 'concourse/pipeline'
