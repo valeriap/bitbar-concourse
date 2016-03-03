@@ -13,12 +13,12 @@ module Concourse
       #
       # deliver a notification for each build
       #
-      def deliver(builds)
-        Array(builds).each do |build|
+      def deliver(changes)
+        Array(changes).each do |change|
           begin
-            @notifier.ping("Build #{build.name} of #{build.job.name} [#{build.status}](#{build.url})")
-          rescue
-            warn "Error: #{$ERROR_INFO.message}"
+            @notifier.ping(change.to_s)
+          rescue => e
+            warn "Error: #{e.message}"
           end
         end
       end
