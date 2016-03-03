@@ -1,9 +1,10 @@
+# frozen_string_literal: true
 require 'slack-notifier'
 
 module Concourse
   module Slack
     class BuildNotifier
-      def initialize(webhook_uri, username: 'Concourse', channel: )
+      def initialize(webhook_uri, username: 'Concourse', channel:)
         @notifier = ::Slack::Notifier.new(webhook_uri)
         @notifier.username = username
         @notifier.channel = channel
@@ -17,7 +18,7 @@ module Concourse
           begin
             @notifier.ping("Build #{build.name} of #{build.job.name} [#{build.status}](#{build.url})")
           rescue
-            warn "Error: #{$!.message}"
+            warn "Error: #{$ERROR_INFO.message}"
           end
         end
       end

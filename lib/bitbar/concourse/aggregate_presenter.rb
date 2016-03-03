@@ -1,7 +1,8 @@
+# frozen_string_literal: true
 module Bitbar
   module Concourse
     class AggregatePresenter
-      def initialize(builds, target_name = nil)
+      def initialize(builds, target_name=nil)
         @builds = Array(builds.dup)
         @target_name = target_name
       end

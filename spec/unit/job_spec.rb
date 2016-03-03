@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require 'spec_helper'
 require 'json'
 
@@ -15,7 +16,7 @@ module Concourse
       JSON.parse File.read(fixtures / 'pipelines/bits-service/jobs/CATs-with-bits.json')
     end
 
-    subject{Job.new(pipeline, job_json)}
+    subject { Job.new(pipeline, job_json) }
 
     before do
       allow(pipeline).to receive(:url).and_return('http://example.com')

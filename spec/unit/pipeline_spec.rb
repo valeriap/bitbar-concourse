@@ -1,9 +1,10 @@
+# frozen_string_literal: true
 require 'spec_helper'
 require 'json'
 
 module Concourse
   describe Pipeline do
-    subject{Pipeline.new(client, bits_service_json)}
+    subject { Pipeline.new(client, bits_service_json) }
 
     let(:fixtures) do
       Pathname(__dir__).parent / 'fixtures'

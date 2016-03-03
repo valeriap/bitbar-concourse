@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require 'concourse/decorator'
 require 'concourse/client'
 require 'concourse/target'

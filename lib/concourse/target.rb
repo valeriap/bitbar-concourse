@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require 'uri'
 require 'json'
 require 'open-uri'
@@ -10,7 +11,7 @@ module Concourse
   class Target
     attr_reader :name
 
-    def initialize(client, name = nil)
+    def initialize(client, name=nil)
       @client = client
       @name = name
     end
@@ -21,7 +22,7 @@ module Concourse
       end
     end
 
-    def get(path = '')
+    def get(path='')
       @client.get('pipelines' + path)
     end
 
