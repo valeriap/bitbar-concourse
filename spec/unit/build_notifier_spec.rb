@@ -5,21 +5,6 @@ require 'concourse/slack'
 module Concourse
   module Slack
     describe BuildNotifier do
-      let(:job_with_failed_build) do
-        double(Job).tap do |job|
-          allow(job).to receive(:name) { 'test job' }
-        end
-      end
-
-      let(:failed_build) do
-        double(Build).tap do |failed_build|
-          allow(failed_build).to receive(:name) { '#0' }
-          allow(failed_build).to receive(:job) { job_with_failed_build }
-          allow(failed_build).to receive(:status) { 'failed' }
-          allow(failed_build).to receive(:url) { 'http://ci.example.com' }
-        end
-      end
-
       subject do
         BuildNotifier.new('http://anything', username: 'username', channel: '#channel')
       end
@@ -44,16 +29,16 @@ module Concourse
         end
       end
 
-      context 'when there is a failed build' do
-        let(:builds) { failed_build }
+      context 'when there was a change' do
+        let(:changes) { ['foo'] }
 
         describe '#deliver' do
           it 'delivers the message' do
             allow_any_instance_of(::Slack::Notifier).to receive(:ping) do |_notifier, msg|
-              expect(msg).to eq('Build #0 of test job [failed](http://ci.example.com)')
+              expect(msg).to eq('foo')
             end
 
-            subject.deliver(builds)
+            subject.deliver(changes)
           end
         end
       end
