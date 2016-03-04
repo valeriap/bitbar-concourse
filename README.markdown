@@ -51,8 +51,3 @@ The propeller logo is in the [public domain](https://thenounproject.com/search/?
 
 # TODO
 * Order latest builds in presenter, by status and then by last-run date
-* Use TerminalNotifier when a build is failing:
-
-        TerminalNotifier.notify('Hello World', :open => 'http://twitter.com/alloy')
-
-  We'd have to keep state and notify only on a change (red => green etc.).
