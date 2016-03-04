@@ -1,22 +1,21 @@
 # frozen_string_literal: true
-
 module Concourse
   module Slack
-    Change = Struct.new(:build, :previous_state) do
+    Change = Struct.new(:current_build, :previous_build) do
       def to_s
-        "Build #{build.name} of #{build.job.name} [#{build.status}](#{build.url})"
+        "#{current_build.job}: #{current_build} [#{current_build.status}](#{current_build.url})"
       end
     end
 
-    Addition = Struct.new(:build) do
+    Addition = Struct.new(:new_build) do
       def to_s
-        "New build #{build.name} of #{build.job.name} [#{build.status}](#{build.url})"
+        "New #{new_build.job}: #{new_build} [#{new_build.status}](#{new_build.url})"
       end
     end
 
-    Removal = Struct.new(:name) do
+    Removal = Struct.new(:previous_build) do
       def to_s
-        "Build #{name} was removed"
+        "#{previous_build.job} was removed"
       end
     end
 
@@ -25,26 +24,26 @@ module Concourse
         @store = store
       end
 
-      def update(builds)
-        result = builds.map do |build|
+      def update(current_builds)
+        result = current_builds.map do |current_build|
           begin
-            previous_state = @store[build.url.to_s]
+            previous_build = @store[current_build.job.url.to_s]
 
-            if previous_state.nil?
-              Addition.new(build)
+            if previous_build.nil?
+              Addition.new(current_build)
             else
-              Change.new(build, previous_state) if build.status != previous_state
+              Change.new(current_build, previous_build) if current_build.status != previous_build.status
             end
           ensure
-            @store[build.url.to_s] = build.status
+            @store[current_build.job.url.to_s] = current_build
           end
         end.compact
 
-        removed = @store.keys - builds.map { |build| build.url.to_s }
+        removed = @store.keys - current_builds.map { |current_build| current_build.job.url.to_s }
 
         removed.each do |removed_url|
-          result << Removal.new(removed_url)
-          @store.delete(removed_url)
+          previous_build = @store.delete(removed_url)
+          result << Removal.new(previous_build)
         end
 
         result

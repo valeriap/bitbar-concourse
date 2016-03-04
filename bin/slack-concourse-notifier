@@ -42,4 +42,5 @@ build_notifier = Concourse::Slack::BuildNotifier.new(
 store = Concourse::Slack::Store.new('flintstone-pipeline-state.yaml')
 repo = Concourse::Slack::Repository.new(store)
 changes = repo.update(finished_builds)
+warn changes
 build_notifier.deliver(changes)
