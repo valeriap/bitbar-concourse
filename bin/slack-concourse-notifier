@@ -39,7 +39,7 @@ build_notifier = Concourse::Slack::BuildNotifier.new(
   channel:  ENV['SLACK_CHANNEL']
 )
 
-store = Concourse::Slack::Store.new('~/.concourse-pipeline-state.yaml')
+store = Concourse::Slack::Store.new(File.expand_path('~/.concourse-pipeline-state.yaml'))
 repo = Concourse::Slack::Repository.new(store)
 changes = repo.update(finished_builds)
 warn changes
