@@ -5,6 +5,7 @@ require 'json'
 module Concourse
   describe Build do
     subject{ Build.new(job, build_json) }
+
     let(:job) do
       double(Job)
     end
@@ -40,6 +41,21 @@ module Concourse
       it 'has a next build' do
         allow(job).to receive(:next_build).and_return(double(Build))
         expect(subject.next).to be
+      end
+    end
+
+    describe '#to_s' do
+      it 'no arg returns the short form' do
+        expect(subject.to_s).to eq('build 12')
+      end
+
+      it ':short returns the short form' do
+        expect(subject.to_s(:short)).to eq('build 12')
+      end
+
+      it ':long returns the long form' do
+        allow(job).to receive(:to_s).with(:long).and_return('job foobar')
+        expect(subject.to_s(:long)).to eq('build 12 of job foobar')
       end
     end
   end

@@ -52,8 +52,10 @@ module Concourse
       @job.next_build
     end
 
-    def to_s
-      "#{self.class.name.split('::').last.downcase} #{name} of #{@job}"
+    include ToStringDecorator
+
+    def parent
+      @job
     end
   end
 end
