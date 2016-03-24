@@ -16,55 +16,55 @@ module Bitbar
         allow(build_red).to receive(:success?).and_return(false)
       end
 
-      context 'when all jobs of all pipelines are green' do
+      context 'when all builds are green' do
         subject do
           AggregatePresenter.new([build_green, build_green])
         end
 
         describe '#to_s' do
-          it 'returns presents the target as green' do
+          it 'presents the aggregate as green' do
             expect(subject.to_s).to include('color=green')
           end
         end
 
         describe '#success?' do
-          it 'returns true' do
+          it 'is true' do
             expect(subject.success?).to be true
           end
         end
       end
 
-      context 'when one job of a pipelines is red' do
+      context 'when a job has a failing build' do
         subject do
           AggregatePresenter.new([build_green, build_red])
         end
 
         describe '#to_s' do
-          it 'returns presents the target as green' do
+          it 'presents the aggregate as red' do
             expect(subject.to_s).to include('color=red')
           end
         end
 
         describe '#success?' do
-          it 'returns true' do
+          it 'is false' do
             expect(subject.success?).to be false
           end
         end
       end
 
-      context 'when all jobs of all pipelines are red' do
+      context 'when all jobs are red' do
         subject do
           AggregatePresenter.new([build_red, build_red])
         end
 
         describe '#to_s' do
-          it 'returns presents the target as green' do
+          it 'presents the aggregate as red' do
             expect(subject.to_s).to include('color=red')
           end
         end
 
         describe '#success?' do
-          it 'returns true' do
+          it 'is false' do
             expect(subject.success?).to be false
           end
         end

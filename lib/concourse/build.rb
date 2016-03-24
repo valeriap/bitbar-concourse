@@ -46,6 +46,10 @@ module Concourse
       Time.at(@info['end_time']) if @info['end_time']
     end
 
+    def next
+      @job.next_build
+    end
+
     def to_s
       "#{self.class.name.split('::').last.downcase} #{name} of #{@job}"
     end
