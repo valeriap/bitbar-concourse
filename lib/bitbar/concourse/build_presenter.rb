@@ -18,7 +18,7 @@ module Bitbar
 
         lines = [
           "#{icon}  #{@build.job_name} - build ##{@build.name} | href=#{@build.url}",
-          "finished #{end_time}; took #{elapsed_time}"
+          "finished #{relative_end_time}; took #{elapsed_time}"
         ]
 
         if next_build = @build.next
@@ -44,7 +44,7 @@ module Bitbar
         end
       end
 
-      def end_time
+      def relative_end_time
         @build.end_time.extend(RelativeTime).to_relative if @build.end_time
       end
     end
