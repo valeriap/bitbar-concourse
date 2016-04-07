@@ -28,7 +28,7 @@ module Concourse
     end
 
     def finished_build
-      Build.new(self, @info['finished_build'])
+      Build.new(self, @info['finished_build']) if @info['finished_build']
     end
 
     def next_build
