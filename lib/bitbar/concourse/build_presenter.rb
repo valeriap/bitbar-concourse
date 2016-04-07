@@ -9,7 +9,7 @@ module Bitbar
       def_delegator :@build, :success?
 
       def initialize(build)
-        fail 'Build must not be nil' if build.nil?
+        raise 'Build must not be nil' if build.nil?
         @build = build
       end
 

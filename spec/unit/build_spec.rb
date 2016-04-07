@@ -3,7 +3,7 @@ require 'json'
 
 module Concourse
   describe Build do
-    subject{ Build.new(job, build_json) }
+    subject { Build.new(job, build_json) }
 
     let(:job) do
       double(Job)
