@@ -4,6 +4,8 @@ Presents the status of a [Concourse](https://concourse.ci/release-notes.html) pi
 
 This started out as fork of Checkman's [concourse.check](https://github.com/cppforlife/checkman/blob/master/scripts/concourse.check), but has evolved since.
 
+change
+
 # Usage
 
 * Install bitbar (`brew install bitbar`)
